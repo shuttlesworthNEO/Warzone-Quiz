@@ -11,6 +11,7 @@ from django.utils import timezone
 
 # Create your views here.
 def signup_view(request):
+    dict = {}
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -18,14 +19,17 @@ def signup_view(request):
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            #saving data to DB
-            user = UserModel(name=name, password=make_password(password), email=email, username=username)
-            user.save()
-            return redirect('login/')
+            if UserModel.objects.filter(username=username):
+                dict['message'] = 'Username already exists!'
+            else:
+                user = UserModel(name=name, password=make_password(password), email=email, username=username)
+                user.save()
+                return redirect('login/')
     else:
         form = SignUpForm()
 
-    return render(request, 'index.html', {'form' : form})
+    dict['form'] = form
+    return render(request, 'index.html', dict)
 
 
 def login_view(request):
@@ -46,7 +50,7 @@ def login_view(request):
                     token = SessionToken(user=user)
                     token.create_token()
                     token.save()
-                    response = redirect('feed/')
+                    response = redirect('quiz/')
                     response.set_cookie(key='session_token', value=token.session_token)
                     return response
     else:

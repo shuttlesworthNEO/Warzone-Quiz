@@ -4,6 +4,6 @@ from __future__ import unicode_literals
 from django.contrib import admin
 
 # Register your models here.
-from Quiz.models import Question
+from Quiz.models import QuestionModel
 
-admin.site.register(Question)
+admin.site.register(QuestionModel)

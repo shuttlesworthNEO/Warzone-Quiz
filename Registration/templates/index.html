@@ -16,8 +16,14 @@
         <form method="post">
         {% csrf_token %}
             <div>
+                {{ message }}
                 <label for="username">Username: </label>
                 <input id="username" type="text" name="username" value={{ username }}>
+            </div>
+
+            <div>
+                <label for="school">School: </label>
+                <input id="school" type="text" name="school" value={{ school }}>
             </div>
 
             <div>

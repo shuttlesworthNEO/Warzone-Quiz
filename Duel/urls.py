@@ -16,8 +16,9 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from Registration.views import signup_view, login_view
-
+from Quiz.views import quiz_view
 urlpatterns = [
+    url('quiz/', quiz_view),
     url('login/', login_view),
     url('', signup_view),
 ]
