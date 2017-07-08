@@ -16,12 +16,14 @@ def QuestionView(request):
         print user.count
         if user.count <= 20:
             question = QuestionModel.objects.order_by('?')[:1]
-            while not CheckModel.objects.filter(question=question, user=user):
+            if not CheckModel.objects.filter(question=question, user=user).first():
                 user.count += 1
                 user.save()
                 served = CheckModel(question=question.first(), user=user)
                 served.save()
-                return render(request, 'index.html', {'question':question})
+                return render(request, 'quiz.html', {'question':question})
+            else:
+                return redirect('/quiz/')
         else:
             return redirect('/endquiz/')
     else:
@@ -29,17 +31,31 @@ def QuestionView(request):
 
 def CheckAnswerView(request):
     user = check_validation(request)
+    print "HEREEEEEEEEEE"
     if user and request.method == "POST":
+        print "HERE TOO"
+        print request.body
         form = QuestionForm(request.POST)
         if form.is_valid():
             response = form.cleaned_data.get('answer')
-            id = form.cleaned_data.get('question')
-            answer = QuestionModel.objects.filter(id=id).answer
+            ques_response = form.cleaned_data.get('question')
+            print ques_response.id
+            question = QuestionModel.objects.filter(id=ques_response.id).first()
+            answer = question.answer
+            print response, answer
             if answer == response:
                 pseudo = UserModel.objects.filter(id=user.id).first()
                 pseudo.score = pseudo.score + 1
                 pseudo.save()
-                print pseudo
+                print pseudo.score
         return redirect('/quiz/')
+    else:
+        return redirect('/login/')
+
+def FinalView(request):
+    user = check_validation(request)
+    if user:
+        score = user.score
+        return render(request, 'final.html', {'score':score})
     else:
         return redirect('/login/')

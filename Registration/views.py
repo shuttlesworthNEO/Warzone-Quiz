@@ -24,7 +24,7 @@ def signup_view(request):
             else:
                 user = UserModel(name=name, password=make_password(password), email=email, username=username)
                 user.save()
-                return redirect('login/')
+                return redirect('/login/')
     else:
         form = SignUpForm()
 
@@ -50,7 +50,7 @@ def login_view(request):
                     token = SessionToken(user=user)
                     token.create_token()
                     token.save()
-                    response = redirect('quiz/')
+                    response = redirect('/quiz/')
                     response.set_cookie(key='session_token', value=token.session_token)
                     return response
     else:
