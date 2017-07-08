@@ -10,6 +10,8 @@ class UserModel(models.Model):
 	username = models.CharField(max_length=120)
 	password = models.CharField(max_length=40)
 	school = models.CharField(max_length=120)
+	score = models.IntegerField(default=0)
+	count = models.IntegerField(default=0)
 	created_on = models.DateTimeField(auto_now_add=True)
 	updated_on = models.DateTimeField(auto_now=True)
 

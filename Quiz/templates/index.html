@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST" action="/answer/">
+    {% csrf_token %}
+    {% for question in question %}
+        <h3>Q. {{ question.question_text }}</h3>
+        {% if question.url %}
+        <img src="{{ question.url }}" style="width: 50%; height: 50%"><br>
+        {% endif %}
+        <input type="radio" name="answer" value="a">{{ question.option1 }}<br>
+        <input type="radio" name="answer" value="b">{{ question.option2 }}<br>
+        <input type="radio" name="answer" value="c">{{ question.option3 }}<br>
+        <input type="radio" name="answer" value="d">{{ question.option4 }}<br>
+        <input type="submit" class="btn btn-default" value="Submit">
+    {% endfor %}
+</form>
+
+</body>
+</html>

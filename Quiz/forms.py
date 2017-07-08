@@ -1,7 +1,8 @@
 from django import forms
-from models import QuestionModel
+from models import QuestionModel, AnswerModel
 
 class QuestionForm(forms.ModelForm):
+    answer = forms.CharField(max_length=5)
     class Meta:
-        model = QuestionModel
-        fields = ['question_text','option1', 'option2', 'option3', 'option4']
+        model = AnswerModel
+        fields=['answer', 'question',]
