@@ -14,6 +14,7 @@ def signup_view(request):
     dict = {}
     if request.method == "POST":
         form = SignUpForm(request.POST)
+        print request.body
         if form.is_valid():
             username = form.cleaned_data['username']
             name = form.cleaned_data['name']

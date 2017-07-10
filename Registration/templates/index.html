@@ -1,51 +1,44 @@
 {% load staticfiles %}
+<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css">
+<br><br><br><br><br><br><br><br><br><br><br><br>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Warzone</title>
-</head>
-<body>
-	<div class="main">
-            <h1> Duel</h1>
-            <h3>Sign Up</h3>
+<div class="wrapper">
+  <form class="form" method="POST" >
+      {% csrf_token %}
+
+    <input type="text" class="name" name="name" placeholder="Name">
+    <div>
+      <p class="name-help">Please enter your first and last name.</p>
+    </div>
+      {% if message %}
+      <input type="text" class="username" name="username" placeholder="{{ message }}">
+    <div>
+      <p class="username-help">Please enter your username.</p>
+    </div>
+      {% else %}
+      <input type="text" class="username" name="username" placeholder="Username">
+    <div>
+      <p class="username-help">Please enter your username.</p>
+    </div>
+      {% endif %}
+
+      <input type="text" class="school" name="school" placeholder="School">
+    <div>
+      <p class="school-help">Please enter the name of your school.</p>
     </div>
 
-    <div>
-        <form method="post">
-        {% csrf_token %}
-            <div>
-                {{ message }}
-                <label for="username">Username: </label>
-                <input id="username" type="text" name="username" value={{ username }}>
-            </div>
+      <input type="text" class="email" name="email" placeholder="Email">
+     <div>
+      <p class="email-help">Please enter your current email address.</p>
+    </div>
 
-            <div>
-                <label for="school">School: </label>
-                <input id="school" type="text" name="school" value={{ school }}>
-            </div>
+      <input type="password" class="password" name="password" placeholder="Password">
+     <div>
+      <p class="password-help">Please enter your password.</p>
+    </div>
 
-            <div>
-                <label for="name">Name: </label>
-                <input id="name" type="text" name="name" value={{ name }}>
-            </div>
-
-            <div>
-                <label for="email">Email: </label>
-                <input id="email" type="text" name="email" value={{ email }}>
-            </div>
-
-            <div>
-                <label for="password">Password: </label>
-                <input id="password" type="password" name="password" value={{ password }}>
-            </div>
-                <input type="submit" value="Sign Up">
-        </form>
-
-
-    </div><br><br>
-
-    <div><h3>Already a user?</h3><a href="/login/">Login</a> </div>
-</body>
-</html>
+    <input type="submit" class="submit" value="Register">
+  </form>
+</div>

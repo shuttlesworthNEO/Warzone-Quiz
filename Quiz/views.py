@@ -13,10 +13,11 @@ from forms import QuestionForm
 def QuestionView(request):
     user = check_validation(request)
     if user:
-        print user.count
         if user.count <= 20:
             question = QuestionModel.objects.order_by('?')[:1]
-            if not CheckModel.objects.filter(question=question, user=user).first():
+            if question[0].id not in user.questions:
+                print user.questions
+                user.questions.append(question[0].id)
                 user.count += 1
                 user.save()
                 served = CheckModel(question=question.first(), user=user)
@@ -31,23 +32,17 @@ def QuestionView(request):
 
 def CheckAnswerView(request):
     user = check_validation(request)
-    print "HEREEEEEEEEEE"
     if user and request.method == "POST":
-        print "HERE TOO"
-        print request.body
         form = QuestionForm(request.POST)
         if form.is_valid():
             response = form.cleaned_data.get('answer')
             ques_response = form.cleaned_data.get('question')
-            print ques_response.id
             question = QuestionModel.objects.filter(id=ques_response.id).first()
             answer = question.answer
-            print response, answer
             if answer == response:
                 pseudo = UserModel.objects.filter(id=user.id).first()
                 pseudo.score = pseudo.score + 1
                 pseudo.save()
-                print pseudo.score
         return redirect('/quiz/')
     else:
         return redirect('/login/')

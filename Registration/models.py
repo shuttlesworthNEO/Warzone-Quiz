@@ -14,6 +14,7 @@ class UserModel(models.Model):
 	count = models.IntegerField(default=0)
 	created_on = models.DateTimeField(auto_now_add=True)
 	updated_on = models.DateTimeField(auto_now=True)
+	questions = []
 
 class SessionToken(models.Model):
 	user = models.ForeignKey(UserModel)
