@@ -1,29 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Warzone</title>
-</head>
-<body>
-    <h1>Duel</h1>
-    <h3>Login</h3>
-    {{ error_message }}
-    <form method="POST" action="">
-        {% csrf_token %}
+{% load staticfiles %}
+<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href="{% static 'css/login.css' %}" rel="stylesheet" type="text/css">
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+<div class="wrapper">
+        {{ error_message }}
+  <form class="form" method="POST" >
+      {% csrf_token %}
+
+      <input type="text" class="username" name="username" placeholder="Username">
     <div>
-        <label for="username">Username: </label>
-        <input id="username" type="text" name="username" value={{ username }}>
+      <p class="username-help">Please enter your username.</p>
     </div>
 
-    <div>
-        <label for="passwrod">Password: </label>
-        <input id="password" type="password" name="password" value={{ password }}>
+      <input type="password" class="password" name="password" placeholder="Password">
+     <div>
+      <p class="password-help">Please enter your password.</p>
     </div>
-        <input type="submit" class="btn btn-default" value="Login">
-    </form>
 
-    <div>
-        {{ message }}
-    </div>
-</body>
-</html>
+    <input type="submit" class="submit" value="Login">
+  </form>
+</div>
