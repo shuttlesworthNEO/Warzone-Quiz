@@ -1,8 +1,7 @@
 from django import forms
-from models import QuestionModel, AnswerModel
+from models import QuestionModel, ValidationModel
 
-class QuestionForm(forms.ModelForm):
+class QuestionForm(forms.Form):
     answer = forms.CharField(max_length=5)
-    class Meta:
-        model = AnswerModel
-        fields=['answer', 'question',]
+    question = forms.IntegerField()
+    fields=['answer', 'question',]

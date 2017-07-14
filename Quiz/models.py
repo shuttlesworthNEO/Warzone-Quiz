@@ -17,10 +17,8 @@ class QuestionModel(models.Model):
 	def __str__(self):
 		return self.question_text
 
-class CheckModel(models.Model):
-	question = models.ForeignKey(QuestionModel)
+class ValidationModel(models.Model):
 	user = models.ForeignKey(UserModel)
-	served = models.BooleanField(default=True)
-
-class AnswerModel(models.Model):
 	question = models.ForeignKey(QuestionModel)
+	response = models.CharField(max_length=5)
+	correct = models.BooleanField(default=False)

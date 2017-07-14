@@ -18,6 +18,7 @@ from Registration.views import signup_view, login_view
 from Quiz.views import QuestionView, CheckAnswerView, FinalView
 from django.contrib import admin
 urlpatterns = [
+    url('admin/', admin.site.urls),
     url('endquiz/', FinalView),
     url('answer/', CheckAnswerView),
     url('quiz/', QuestionView),
