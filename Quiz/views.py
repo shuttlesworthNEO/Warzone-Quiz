@@ -13,7 +13,7 @@ from django.db.models import Q
 def QuestionView(request):
     user = check_validation(request)
     if user:
-        if user.count <= 3:
+        if user.count < 20:
             question = QuestionModel.objects.order_by('?')[:1].first()
 
             print question
@@ -36,16 +36,23 @@ def CheckAnswerView(request):
     user = check_validation(request)
     if user and request.method == "POST":
         form = QuestionForm(request.POST)
+        print request.body
         if form.is_valid():
-            print request.body
+            print "HERE"
             response = form.cleaned_data.get('answer')
             ques_response = form.cleaned_data.get('question')
             question = QuestionModel.objects.filter(id=ques_response).first()
+            temp = ValidationModel.objects.get(Q(user=user) & Q(question=ques_response))
+            temp.response = response
+            val = False
             answer = question.answer
             print answer, response
             if answer == response:
+                val = True
                 user.score += 1
                 user.save()
+            temp.correct = val
+            temp.save()
         return redirect('/quiz/')
     else:
         return redirect('/login/')
@@ -54,6 +61,7 @@ def FinalView(request):
     user = check_validation(request)
     if user:
         score = user.score
-        return render(request, 'final.html', {'score':score})
+        response = ValidationModel.objects.filter(user=user).all()
+        return render(request, 'final.html', {'score':score, 'response': response})
     else:
         return redirect('/login/')

@@ -6,5 +6,10 @@
 </head>
 <body>
     {{ score }}
+
+    {% for q in response %}
+
+        <p>{{ q.question }} : {{ q.response }} : {{ q.correct }}</p>
+    {% endfor %}
 </body>
 </html>
