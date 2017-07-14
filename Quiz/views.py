@@ -36,11 +36,19 @@ def CheckAnswerView(request):
     user = check_validation(request)
     if user and request.method == "POST":
         form = QuestionForm(request.POST)
-        print request.body
+        print request.POST['timer'], "post time"
+        if request.POST['timer'] == '15':
+            user.time += 15
+            user.save()
+            print user.time, "UserTime"
         if form.is_valid():
-            print "HERE"
             response = form.cleaned_data.get('answer')
             ques_response = form.cleaned_data.get('question')
+            timer = form.cleaned_data.get('timer')
+
+            user.time += timer
+            user.save()
+            print user.time, "Inside Form Time"
             question = QuestionModel.objects.filter(id=ques_response).first()
             temp = ValidationModel.objects.get(Q(user=user) & Q(question=ques_response))
             temp.response = response
@@ -61,7 +69,8 @@ def FinalView(request):
     user = check_validation(request)
     if user:
         score = user.score
+        time = user.time
         response = ValidationModel.objects.filter(user=user).all()
-        return render(request, 'final.html', {'score':score, 'response': response})
+        return render(request, 'final.html', {'score':score, 'response': response, 'time':time})
     else:
         return redirect('/login/')

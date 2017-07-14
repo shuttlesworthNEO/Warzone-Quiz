@@ -46,6 +46,11 @@ input[type="text"], input[type="email"], input[type="password"] {
   color: black;
 }
 
+a {
+  color: grey;
+  font-family: FontAwesome;
+}
+
 input[type="submit"] {
   width: 100%;
   padding: 15px;

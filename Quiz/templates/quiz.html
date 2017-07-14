@@ -1,11 +1,13 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
+<script src="{% static 'js/quiz.js' %}"></script>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<p id="t"></p>
 <form method="POST" name="form" action="/answer/">
     {% csrf_token %}
         <h3>Q. {{ question.question_text }}</h3>
@@ -16,8 +18,9 @@
         <input type="radio" id="answer" name="answer" value="b">{{ question.option2 }}<br>
         <input type="radio" id="answer" name="answer" value="c">{{ question.option3 }}<br>
         <input type="radio" id="answer" name="answer" value="d">{{ question.option4 }}<br>
+        <input type="hidden" id="timer" name="timer" value="">
         <input type="hidden" name="question" value="{{ question.id }}">
-        <input type="submit" class="btn btn-default" value="Submit">
+        <input type="button" class="btn btn-default" onclick="submission()" value="Submit">
 </form>
 </body>
 </html>

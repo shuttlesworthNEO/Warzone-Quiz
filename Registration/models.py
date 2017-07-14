@@ -12,6 +12,7 @@ class UserModel(models.Model):
 	school = models.CharField(max_length=120)
 	score = models.IntegerField(default=0)
 	count = models.IntegerField(default=0)
+	time = models.IntegerField(default=0)
 	created_on = models.DateTimeField(auto_now_add=True)
 	updated_on = models.DateTimeField(auto_now=True)
 
