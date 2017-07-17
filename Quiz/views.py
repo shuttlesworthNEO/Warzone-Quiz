@@ -6,7 +6,7 @@ from Registration.models import UserModel
 from models import QuestionModel, ValidationModel
 from forms import QuestionForm
 from Registration.views import check_validation
-from forms import QuestionForm
+from Quiz.forms import QuestionForm
 from django.db.models import Q
 # Create your views here.
 
