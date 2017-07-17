@@ -3,8 +3,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from Registration.models import UserModel
-from models import QuestionModel, ValidationModel
-from forms import QuestionForm
+from Quiz.models import QuestionModel, ValidationModel
 from Registration.views import check_validation
 from Quiz.forms import QuestionForm
 from django.db.models import Q

@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from Registration.forms import SignUpForm, LoginForm
 from django.shortcuts import render, redirect
-from models import UserModel, SessionToken
+from Registration.models import UserModel, SessionToken
 from django.contrib.auth.hashers import make_password, check_password
 from datetime import timedelta
 from django.utils import timezone
