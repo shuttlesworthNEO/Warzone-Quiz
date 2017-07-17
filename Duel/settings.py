@@ -25,7 +25,9 @@ SECRET_KEY = '4txlky+(p_l$(&7=nlm4+l^6($c6x$s&#%$e(p!%@=f!+qe79a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'shuttlesworthneo.pythonanywhere.com',
+]
 
 
 # Application definition
