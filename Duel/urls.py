@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from Registration.views import signup_view, login_view
-from Quiz.views import QuestionView, CheckAnswerView, FinalView
+from Quiz.views import QuestionView, CheckAnswerView, FinalView, RulesView
 from django.contrib import admin
 urlpatterns = [
+    url('rules/', RulesView),
     url('admin/', admin.site.urls),
     url('endquiz/', FinalView),
     url('answer/', CheckAnswerView),

@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rules</title>
+    <link href="{% static 'css/rules.css' %}" type="text/css" rel="stylesheet">
+</head>
+<body class="wrapper">
+
+    <ul class="space-ul" style="float: left; margin-top: 100px; text-align: left">
+        <li>This is the preliminary round for Warzone, Zenith'17.</li><br>
+        <li>You'll be answersing 20 questions.</li><br>
+        <li>You'll get a total of 10 seconds to answer each question.</li><br>
+        <li>Once started, you cannot stop the quiz.</li><br>
+        <li>Each question carries 1 point.</li><br>
+        <li>Top 16 students on the basis of their scores will qualify for the final battle.</li><br>
+        <li>In case of ties, the total time to complete the quiz will be taken into account.</li><br>
+    </ul>
+    <form method="GET" action="/quiz/">
+        <input type="submit" class="btn btn-default" value="Start Quiz">
+    </form>
+</body>
+</html>

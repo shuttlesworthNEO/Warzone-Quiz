@@ -4,23 +4,54 @@
 <script src="{% static 'js/quiz.js' %}"></script>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Quiz</title>
+    <link href="{% static 'css/quiz.css' %}" type="text/css" rel="stylesheet">
 </head>
-<body>
-<p id="t"></p>
+<body class="wrapper">
+<div class="wrapper">
 <form method="POST" name="form" action="/answer/">
+    <p id="t"></p>
     {% csrf_token %}
         <h3>Q. {{ question.question_text }}</h3>
         {% if question.url %}
-        <img src="{{ question.url }}" style="width: 50%; height: 50%"><br>
+        <img src="{{ question.url }}" style="width: 400px; height: 300px;border: thick"><br>
         {% endif %}
-        <input type="radio" id="answer" name="answer" value="a">{{ question.option1 }}<br>
-        <input type="radio" id="answer" name="answer" value="b">{{ question.option2 }}<br>
-        <input type="radio" id="answer" name="answer" value="c">{{ question.option3 }}<br>
-        <input type="radio" id="answer" name="answer" value="d">{{ question.option4 }}<br>
+
+        <table>
+            <tr>
+                <td><input type="radio" id="answer" name="answer" value="a"></td>
+                <td>{{ question.option1 }}</td>
+            </tr>
+        </table>
+
+
+        <table>
+            <tr>
+                <td><input type="radio" id="answer" name="answer" value="b"></td>
+                <td>{{ question.option2 }}</td>
+            </tr>
+        </table>
+
+
+        <table>
+            <tr>
+                <td><input type="radio" id="answer" name="answer" value="c"></td>
+                <td>{{ question.option3 }}</td>
+            </tr>
+        </table>
+
+
+        <table>
+            <tr>
+                <td><input type="radio" id="answer" name="answer" value="d"></td>
+                <td>{{ question.option4 }}</td>
+            </tr>
+        </table>
+
         <input type="hidden" id="timer" name="timer" value="">
         <input type="hidden" name="question" value="{{ question.id }}">
         <input type="button" class="btn btn-default" onclick="submission()" value="Submit">
 </form>
+</div>
 </body>
 </html>

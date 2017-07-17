@@ -27,9 +27,9 @@ function submission() {
 function counter() {
     timer++;
     time_value.innerHTML = "Time: " +timer;
-    if (timer == 15) {
+    if (timer == 10) {
         clearInterval(clock);
-        inpTime.value = 15;
+        inpTime.value = 10;
         answer.value = "z";
         form.submit();
     }

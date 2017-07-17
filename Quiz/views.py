@@ -10,6 +10,11 @@ from forms import QuestionForm
 from django.db.models import Q
 # Create your views here.
 
+def RulesView(request):
+    user = check_validation(request)
+    if user:
+        if request.method == 'GET':
+            return render(request, 'rules.html')
 def QuestionView(request):
     user = check_validation(request)
     if user:
@@ -37,8 +42,8 @@ def CheckAnswerView(request):
     if user and request.method == "POST":
         form = QuestionForm(request.POST)
         print request.POST['timer'], "post time"
-        if request.POST['timer'] == '15':
-            user.time += 15
+        if request.POST['timer'] == '10':
+            user.time += 10
             user.save()
             print user.time, "UserTime"
         if form.is_valid():

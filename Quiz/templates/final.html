@@ -1,17 +1,17 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Result</title>
+    <link href="{% static 'css/rules.css' %}" type="text/css" rel="stylesheet">
+
 </head>
-<body>
-    {{ score }}
-    <br>
-    {{ time }}
-
-    {% for q in response %}
-
-        <p>{{ q.question }} : {{ q.response }} : {{ q.correct }}</p>
-    {% endfor %}
+<body class="wrapper" style="margin-top: 160px">
+    <h1 style="color: white">Score</h1>
+    <p style="color: white;">{{ score }}</p>
+    <br><br>
+    <h1 style="color: white">Total time</h1>
+    <p style="color: white">{{ time }}</p>
 </body>
 </html>
