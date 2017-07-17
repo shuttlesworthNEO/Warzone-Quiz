@@ -21,7 +21,6 @@ def QuestionView(request):
         if user.count < 20:
             question = QuestionModel.objects.order_by('?')[:1].first()
 
-            print question
             test = ValidationModel.objects.complex_filter(Q(user=user) & Q(question=question))
             while test.exists():
                 question = QuestionModel.objects.order_by('?')[:1].first()
@@ -41,11 +40,9 @@ def CheckAnswerView(request):
     user = check_validation(request)
     if user and request.method == "POST":
         form = QuestionForm(request.POST)
-        print request.POST['timer'], "post time"
         if request.POST['timer'] == '10':
             user.time += 10
             user.save()
-            print user.time, "UserTime"
         if form.is_valid():
             response = form.cleaned_data.get('answer')
             ques_response = form.cleaned_data.get('question')
@@ -53,13 +50,11 @@ def CheckAnswerView(request):
 
             user.time += timer
             user.save()
-            print user.time, "Inside Form Time"
             question = QuestionModel.objects.filter(id=ques_response).first()
             temp = ValidationModel.objects.get(Q(user=user) & Q(question=ques_response))
             temp.response = response
             val = False
             answer = question.answer
-            print answer, response
             if answer == response:
                 val = True
                 user.score += 1

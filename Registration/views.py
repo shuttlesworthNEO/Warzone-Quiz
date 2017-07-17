@@ -14,7 +14,6 @@ def signup_view(request):
     dict = {}
     if request.method == "POST":
         form = SignUpForm(request.POST)
-        print request.body
         if form.is_valid():
             username = form.cleaned_data['username']
             name = form.cleaned_data['name']
@@ -45,7 +44,6 @@ def login_view(request):
 
             if user:
                 # Check for the password
-                print make_password(password), user.password
                 if check_password(password, user.password):
                     token = SessionToken(user=user)
                     token.create_token()
@@ -62,7 +60,6 @@ def login_view(request):
         form = LoginForm()
 
     dict['form'] = form
-    print dict
     return render(request, 'login.html', dict)
 
 #For validating the session
