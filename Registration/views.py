@@ -10,6 +10,9 @@ from datetime import timedelta
 from django.utils import timezone
 
 # Create your views here.
+def Landing_View(request):
+    return render(request, 'landing.html')
+
 def signup_view(request):
     dict = {}
     if request.method == "POST":
