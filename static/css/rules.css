@@ -1,0 +1,35 @@
+body {
+    background: url("../images/quiz_background.jpg");
+    background-size: cover;
+    background-position: top;
+    color: white;
+    text-align: center;
+    vertical-align: baseline;
+    margin: 0px;
+    font-family: Helvetica;
+}
+
+input[type="submit"] {
+    width: 20%;
+    padding: 15px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: darkslategray;
+    font: 14px Oswald;
+    color: #FFF;
+    text-transform: uppercase;
+    text-shadow: #000 0px 1px 5px;
+    border: 1px solid #000;
+    opacity: 0.7;
+    -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.7);
+    border-top: 1px solid rgba(255, 255, 255, 0.8) !important;
+    -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent), to(rgba(255, 255, 255, 0.2)));
+}
+
+.wrapper {
+    width: 600px;
+    margin: 0 auto;
+}
