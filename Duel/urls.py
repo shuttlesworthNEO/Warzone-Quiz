@@ -24,6 +24,6 @@ urlpatterns = [
     url('answer/', CheckAnswerView),
     url('quiz/', QuestionView),
     url('login/', login_view),
-    #url('', signup_view),
-    url('', Landing_View),
+    url('', signup_view),
+    #url('', Landing_View),
 ]
